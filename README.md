@@ -11,7 +11,7 @@ one of several endings.
 
 ## Play it
 
-**▶ [Play online](https://miltiades-vassiliou.github.io/shards-of-the-last-crystal/)**: works on
+**▶ [Play online](https://miltiades-vassiliou.github.io/Shards-of-the-last-crystal/)**: works on
 computers, tablets and phones.
 
 Create your hero (name and gender), then click the choices to make your way
