@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--
+  index.html — the page itself.
+  This file only describes WHAT is on the page. It contains no story and no
+  logic. The page has two "screens"; only one is visible at a time:
+    1. setup-screen – create your hero (name + gender)
+    2. game-screen  – the adventure itself
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Makes the page scale properly on phones -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shards of the Last Crystal</title>
+  <!-- Fantasy fonts from Google Fonts (if offline, the browser falls back to Georgia) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=EB+Garamond:wght@400;600&display=swap">
+  <!-- Our own look: colours, fonts, spacing -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="book">
+  <h1>Shards of the Last Crystal</h1>
+
+  <!-- ===== Screen 1: character creation ===== -->
+  <section id="setup-screen">
+    <h2>Create your hero</h2>
+
+    <label for="hero-name">Name</label>
+    <input id="hero-name" type="text" maxlength="20" placeholder="Arin">
+
+    <fieldset>
+      <legend>Gender</legend>
+      <label><input type="radio" name="gender" value="male"> Male</label>
+      <label><input type="radio" name="gender" value="female"> Female</label>
+      <label><input type="radio" name="gender" value="nonbinary"> Non-binary</label>
+    </fieldset>
+
+    <p id="setup-error" hidden>Please choose a gender to begin.</p>
+    <button id="begin-button">Begin your journey</button>
+  </section>
+
+  <!-- ===== Screen 2: the adventure ===== -->
+  <!-- "hidden" means: don't show this until the engine says so -->
+  <section id="game-screen" hidden>
+    <div class="game-bar">
+      <button id="restart-button" class="restart-link">Restart</button>
+    </div>
+    <!-- The engine (game.js) fills these empty boxes in. The "id" is the
+         name the engine uses to find each box. -->
+    <img id="scene-image" alt="" hidden>
+    <div id="scene">
+      <h2 id="scene-title"></h2>
+      <div id="scene-text"></div>
+      <div id="choices"></div>
+    </div>
+    <div id="inventory"></div>
+  </section>
+</main>
+
+  <!-- Load the story data first, then the engine that reads it.
+       Order matters: game.js needs STORY to exist already. -->
+  <script src="story.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

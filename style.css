@@ -1,0 +1,232 @@
+/* style.css: how the page LOOKS (colours, fonts, spacing).
+   Like the theme/formatting pane in Power BI: change values here to restyle
+   the whole game without touching the story or the engine. */
+
+/* ---------- Colour palette (change these to re-theme everything) ---------- */
+:root {
+  --backdrop: #1d1812;      /* dark wood behind the page */
+  --parchment: #f3ecdc;     /* the page itself */
+  --parchment-dark: #e6dcc4;
+  --ink: #2e2b28;           /* main text */
+  --ink-soft: #6b6157;      /* secondary text */
+  --accent: #3d6fb8;        /* crystal blue */
+  --gold: #a07a2c;
+}
+
+/* ---------- Page ---------- */
+* { box-sizing: border-box; }
+
+/* Anything marked "hidden" in the HTML stays hidden, whatever else says */
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  padding: 24px 16px 48px;
+  background: radial-gradient(ellipse at top, #2c241b 0%, var(--backdrop) 70%);
+  min-height: 100vh;
+  color: var(--ink);
+  font-family: "EB Garamond", Georgia, "Times New Roman", serif;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+/* The parchment "book page" that holds everything */
+.book {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 28px 36px 32px;
+  background: var(--parchment);
+  border-radius: 6px;
+  border: 1px solid #c9b994;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.55), inset 0 0 60px rgba(160, 122, 44, 0.12);
+}
+
+/* ---------- Headings ---------- */
+h1, h2, legend, .ending-banner {
+  font-family: "Cinzel", Georgia, serif;
+}
+
+h1 {
+  margin: 0 0 4px;
+  text-align: center;
+  font-size: 1.9rem;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+
+/* Ornamental divider under the title */
+h1::after {
+  content: "\2726";   /* ✦ */
+  display: block;
+  font-size: 1rem;
+  color: var(--accent);
+  margin-top: 4px;
+}
+
+h2 {
+  margin: 18px 0 8px;
+  font-size: 1.35rem;
+  color: var(--gold);
+}
+
+/* ---------- Top bar during the game ---------- */
+.game-bar {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.restart-link {
+  background: none;
+  border: none;
+  padding: 2px 4px;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  cursor: pointer;
+  text-decoration: underline;
+}
+.restart-link:hover { color: var(--accent); }
+
+/* ---------- Scene picture ---------- */
+#scene-image {
+  display: block;
+  width: 100%;
+  max-width: 560px;   /* the illustrations are square; keep them from towering over the text */
+  height: auto;
+  margin: 8px auto 0;
+  border-radius: 4px;
+  border: 1px solid #d6c8a6;
+}
+
+/* Fade-in each time a new scene appears */
+.fade-in {
+  animation: fade-in 0.7s ease-out;
+}
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ---------- Story text ---------- */
+#scene-text p { margin: 0 0 0.9em; }
+
+/* ---------- Choice buttons ---------- */
+#choices {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+#choices button,
+#begin-button {
+  width: 100%;
+  padding: 12px 16px;
+  text-align: left;
+  background: var(--parchment-dark);
+  color: var(--ink);
+  border: 1px solid #b9a77f;
+  border-radius: 4px;
+  transition: background 0.15s, border-color 0.15s, transform 0.15s;
+}
+
+#choices button::before,
+#begin-button::before {
+  content: "\276F  ";   /* ❯ */
+  color: var(--gold);
+}
+
+#choices button:hover,
+#begin-button:hover {
+  background: #fbf6ea;
+  border-color: var(--accent);
+  transform: translateX(3px);
+}
+
+/* ---------- Ending banner ---------- */
+.ending-banner {
+  margin: 8px 0 4px;
+  padding: 14px;
+  text-align: center;
+  font-size: 1.15rem;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  border-top: 1px solid #c9b994;
+  border-bottom: 1px solid #c9b994;
+}
+
+/* ---------- Inventory ---------- */
+#inventory {
+  margin-top: 24px;
+  padding-top: 12px;
+  border-top: 1px dashed #c9b994;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+
+.item {
+  display: inline-block;
+  margin: 4px 6px 0 0;
+  padding: 2px 10px;
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  color: var(--ink);
+  background: #f9f1dc;
+}
+
+/* ---------- Character creation ---------- */
+#setup-screen label[for="hero-name"] {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+#hero-name {
+  width: 100%;
+  padding: 10px 12px;
+  font: inherit;
+  color: var(--ink);
+  background: #fbf6ea;
+  border: 1px solid #b9a77f;
+  border-radius: 4px;
+}
+#hero-name:focus { outline: 2px solid var(--accent); }
+
+fieldset {
+  margin: 18px 0;
+  padding: 10px 14px 14px;
+  border: 1px solid #c9b994;
+  border-radius: 4px;
+}
+
+legend { padding: 0 6px; color: var(--gold); }
+
+/* Gender options look like pill buttons */
+fieldset label {
+  display: inline-block;
+  margin: 6px 8px 0 0;
+  padding: 6px 14px;
+  border: 1px solid #b9a77f;
+  border-radius: 999px;
+  cursor: pointer;
+}
+fieldset label:has(input:checked) {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+fieldset input { accent-color: var(--accent); }
+
+#setup-error { color: #a33; margin: 0 0 10px; }
+
+/* ---------- Phones: tighter spacing ---------- */
+@media (max-width: 560px) {
+  body { padding: 12px 8px 32px; font-size: 1.1rem; }
+  .book { padding: 20px 16px 24px; }
+  h1 { font-size: 1.5rem; }
+}
